@@ -1,0 +1,30 @@
+<htmll>
+	<p id="demo">100</p>
+<button onclick="myTimerObj.start()">Start timer</button>
+<button onclick="myTimerObj.end()">Stop timer</button>
+</htmll>
+<script>
+	var myTimerObj = (function(document){
+   
+   var myTimer;
+
+   function start() {
+     myTimer = setInterval(myClock, 1000);
+     var c = 100;
+
+     function myClock() {
+       document.getElementById("demo").innerHTML = --c;
+       if (c == 0) {
+         clearInterval(myTimer);
+         alert("Reached zero");
+       }
+     }
+   }
+   
+   function end() {
+       clearInterval(myTimer)
+   }
+
+   return {start:start, end:end};
+ })(document);
+</script>

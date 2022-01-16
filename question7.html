@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title>7 unique random number between 1 and 39</title>
+<script type="text/javascript" language="Javascript">
+    function pick(n, min, max){
+        var values = [], i = max;
+        while(i >= min) values.push(i--);
+        var results = [];
+        var maxIndex = max;
+        for(i=1; i <= n; i++){
+            maxIndex--;
+            var index = Math.floor(maxIndex * Math.random());
+            results.push(values[index]);
+            values[index] = values[maxIndex];
+        }
+        return results;
+    }
+    function go(){
+        var running = true;
+        do{
+            if(!confirm(pick(7, 1, 39).sort(function(a,b){return a - b;}))){
+                running = false;
+            }
+        }while(running)
+    }
+</script>
+</head>
+
+<body>
+    <h1>7 unique random number between 1 and 39</h1>
+    <p><button onclick="go()">Click me</button> to start generating numbers.</p>
+    <p>When the numbers appear, click OK to generate another set, or Cancel to stop.</p>
+</body>

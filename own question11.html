@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Todo List</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto";
+        }
+
+        body {
+            background: #f8f8f8;
+        }
+
+        .wrapper {
+            width: 500px;
+            margin: 0px auto;
+        }
+
+        h3 {
+            padding: 20px 0px;
+            color: #353535;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        h5 {
+            color: #353535;
+            padding: 20px 0px;
+        }
+
+        .todo {
+            padding: 20px 0px;
+        }
+
+        .todo .todo-input {
+            display: flex;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+        }
+
+        .todo .todo-input .input {
+            flex: 1;
+        }
+
+        .todo .todo-input .input input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e1e1e1;
+            outline: none;
+        }
+
+
+        .todo .todo-input .button button {
+            padding: 10px;
+            border: 1px solid #e1e1e1;
+            outline: none;
+            background: #f1f1f1;
+            cursor: pointer;
+            font-weight: bold;
+            color: #353535;
+            transition: background .1s;
+        }
+
+        .todo .todo-input .button button:hover {
+            background: #e1e1e1;
+        }
+
+        .todo .todo-list .todo-list-item {
+            border-bottom: 1px solid #f1f1f1;
+            background: white;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+            border: 1px solid #f1f1f1;
+            padding: 10px;
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .todo .todo-list .todo-list-item .todo-list-item-text {
+            flex: 1;
+            color: #353535;
+        }
+
+        .todo .todo-list .todo-list-item .todo-list-item-button button {
+            cursor: pointer;
+            font-weight: bold;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #ff4040;
+            transition: background .1s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h3>Todo List</h3>
+
+        <div class="todo">
+            <div class="todo-input">
+                <div class="input">
+                    <input id="todoinput" type="text" placeholder="Type todo here" />
+                </div>
+
+                <div class="button">
+                    <button id="addtodobutton">Add Todo</button>
+                </div>
+            </div>
+             
+            <h5>Todo lists:</h5>
+            <div class="todo-list"></div>
+        </div>
+    </div>
+
+    <script>
+        function onLoad() {
+            const todoInput = document.getElementById("todoinput");
+            const addTodoButton = document.getElementById("addtodobutton");
+            const todoListContainer = document.getElementsByClassName("todo-list")[0];
+            let todoList = [];
+
+            function removeAllChildNodes(parent) {
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+
+            function removeItem(index) {
+                todoList = todoList.filter((_, i) => i !== index);
+                renderList();
+            }
+
+            function renderList() {
+                removeAllChildNodes(todoListContainer);
+
+                todoList.forEach((value, index) => {
+                    const listItem = document.createElement("div");
+                    listItem.classList.add("todo-list-item");
+                    
+                    const listItemText = document.createElement("div");
+                    listItemText.classList.add("todo-list-item-text");
+                    listItemText.innerHTML = value;
+
+                    const listItemButton = document.createElement("div");
+                    listItemButton.classList.add("todo-list-item-button")
+                    
+                    const deleteButton = document.createElement("button");
+                    deleteButton.onclick = () => removeItem(index);
+
+                    const deleteIcon = document.createElement("span");
+                    deleteIcon.classList.add("glyphicon");
+                    deleteIcon.classList.add("glyphicon-trash");
+                    
+                    deleteButton.appendChild(deleteIcon);
+                    listItemButton.appendChild(deleteButton);
+                    listItem.appendChild(listItemText);
+                    listItem.appendChild(listItemButton);
+
+                    todoListContainer.appendChild(listItem);
+                });
+
+                if(todoList.length === 0) {
+                    todoListContainer.innerHTML = "No list item here";
+                }
+            }
+            
+            function handleAddTodo() {
+                const value = todoInput.value;
+                if(!value) {
+                    todoInput.style.border = `1px solid #ff4040`;
+                    return;
+                }
+
+                todoInput.style.border = `1px solid #e1e1e1`;
+                todoInput.value = "";
+                todoInput.focus();
+                todoList.push(value);
+                renderList();
+            }
+            
+            renderList();
+            addTodoButton.addEventListener("click", handleAddTodo, false);
+        }
+
+        window.addEventListener("load", onLoad, false);
+    </script>
+</body>
+</html>

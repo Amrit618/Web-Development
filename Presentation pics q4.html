@@ -1,0 +1,90 @@
+<html>
+<title> My Pics </title>
+<h2> These are my pics </h2>
+</html>
+<script>
+    var pics=new Array()
+    var pics= [
+"https://images.unsplash.com/photo-1591948083708-6edc852d7275?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZnJlZSUyMHBpY3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+"https://images.unsplash.com/photo-1621765245357-5842002f6448?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8ZnJlZSUyMHBpY3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+"https://images.unsplash.com/photo-1614907884263-9409f5a11875?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGZyZWUlMjBwaWN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+"https://images.unsplash.com/photo-1562983348-2e2f6a243dc9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fGZyZWUlMjBwaWN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+"https://images.unsplash.com/photo-1590332607287-3081ec35ac76?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGZyZWUlMjBwaWN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+];
+var speed=2000
+    var processed=new Array()
+    for(i=0;i<pics.length;i++){
+        processed[i]=new Image();
+        processed[i].src=pics[i];
+    }
+    var inc=-1;
+    function slideimg(){
+        if (inc<pics.length-1)
+            inc++;
+        else
+            inc=0;
+        document.body.background=processed[inc].src;
+    }
+    if (document.all || document.getElementById)
+    window.onload=new Function('setInterval("slideimg()",speed)');
+</script>
+<style>
+    h2{
+	color:green;
+	border-top: 5px blue;
+	letter-spacing: 2px;
+
+	padding: 5px;
+	text-transform: uppercase;
+	font-size:40px;
+	text-align: center;
+
+}
+body{
+	background-color:#800000;
+	font-family: source code pro;
+	text-align: center;
+	color:#DAA520;
+	font-weight: 200px;
+}
+img{
+	height:200px;
+	width: 300px;
+	border-radius:40%;
+}
+#container{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height:30vh;
+}
+button{
+	margin:10px auto;
+	padding:5px 0px;
+	background-color:#DAA520;
+	color:#D2691E;
+	font-size:15px;
+	text-align: center;
+	letter-spacing: 3px;
+	padding:4px;
+	border:2px solid #2E1263;
+	text-transform: uppercase;
+	text-decoration:none;
+	outline:inset;
+	letter-spacing:5px;
+
+}
+button:hover{
+	transition: 0.3s;
+	background-color:#00FFFF;
+	color:#E0FFFF;
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+p{
+	font-style:italic;
+	font-size:20px;
+	margin-bottom:0%;
+}
+</style>

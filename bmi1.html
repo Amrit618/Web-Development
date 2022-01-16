@@ -1,0 +1,72 @@
+<html>
+    <body>
+<head style="color:blue;font-size:12px;">
+    <center>
+        BMI Calculator
+    </center>
+
+<form> 
+	<center>
+	<label for="weight"> Weight in Kg: </label>
+	<input type="number" id="weight" name="weight">
+	<label for="height"> Height in feet: </label>
+	<input type="number" id="height" name="height">
+    <label for="result"> Your BMI is:</label>
+    <input type="text" id="result" name="result" >
+	<button type="submit" class="btn btn-success"
+	onclick="getbmivalue()"> Calculate Bmi </button>
+
+	<button onclick="reset()"> Reset </button> 
+</center>
+
+<style>
+    button{
+	color:green;
+}
+head{
+font-style: italic;
+}
+input{
+	width:30%;
+	display:grid;
+	padding:9px 20px;
+
+
+}
+body{
+    background-color:orange;
+    margin-top:10%;
+}
+</style>
+<script>
+		function getbmivalue(){
+	var weight= document.getElementById('weight').value;
+	var height=document.getElementById('height').value;
+    height=height*12;
+    height=height*0.025;
+	var newbmivalue=weight/(height*height);
+    if (newbmivalue <= 18.5) {
+  alert("Your BMI is " + newbmivalue + " so you are underweight.");
+} else if (newbmivalue <= 24.9) {
+  alert("Your BMI is " + newbmivalue + " so you have a normal weight.");
+} else {
+  alert("Your BMI is " + newbmivalue + " so you are overweight.");
+}
+
+
+	Math.round(newbmivalue);
+	document.getElementById('result').value =newbmivalue;
+}
+
+
+function reset(){
+    document.getElementById('weight').value="";
+    document.getElementById('height').value="";
+    document.getElementById('result').value=""
+
+}
+</script>
+</form>
+</head>
+</body>
+</html>

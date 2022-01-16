@@ -1,0 +1,27 @@
+<html>
+    
+    <form method="post" name="Form" onsubmit="return validateForm()" action="">
+        <p>Name:</p>
+        <textarea cols="30" rows="2" name="answer_a" id="a"></textarea>
+        <p> Age</p>
+        <textarea cols="30" rows="2" name="answer_b" id="b"></textarea>
+        <p>Telephone Number</p>
+        <textarea cols="30" rows="2" name="answer_c" id="c"></textarea>
+        <p> Email</p>
+        <textarea cols="30" rows="2" name="answer_d" id="d"></textarea>
+        <button type="submit" onclick="validateForm()"> Submit</button>
+      </form>
+      
+      <script>
+    function validateForm() {
+    var a = document.forms["Form"]["answer_a"].value;
+    var b = document.forms["Form"]["answer_b"].value;
+    var c = document.forms["Form"]["answer_c"].value;
+    var d = document.forms["Form"]["answer_d"].value;
+    if (a == null || a == "", b == null || b == "", c == null || c == "", d == null || d == "") {
+      alert("Please Fill All Required Field");
+      return false;
+    }
+  }
+      </script>
+</html>
